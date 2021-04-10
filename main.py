@@ -83,4 +83,4 @@ def pages():
     return render_template('pages.html')
 
 if __name__ == "__main__":
-  app.run(debug=True)
+  app.run(debug=True, port=5500)
