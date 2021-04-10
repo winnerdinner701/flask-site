@@ -15,11 +15,13 @@ def home():
             return redirect(url_for("chris"))
         if i == "admin":
             return redirect(url_for("admin1"))
+        if i == "pages":
+            return redirect(url_for('pages'))
         else:
-            return redirect(url_for("err", e=400))
+            return redirect(url_for("err", e="400"))
     return render_template('index.html')
 
-@app.route('/pages/<e>')
+@app.route('/err/<e>/')
 def err(e):
     return render_template('error.html', e=e)
 
@@ -74,6 +76,10 @@ def dad():
 @app.route('/permission_denied/<n>/<u>/<p>/')
 def permission_admin(n, u, p):
     return render_template('permission.html', n=n, u=u, p=p)
+
+@app.route('/pages/')
+def pages():
+    return render_template('pages.html')
 
 if __name__ == "__main__":
   app.run(debug=True)
