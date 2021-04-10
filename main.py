@@ -59,7 +59,7 @@ def admin_link(u, n, p):
     if n in a and u in a and p in a:
         return render_template('admin_user.html', n=n)
     else:
-        return redirect(url_for('permission_admin', n='admin', u=n))
+        return redirect(url_for('permission_admin', n='admin', u=n, p=p))
 
 @app.route('/chris/')
 def chris():
