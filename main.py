@@ -76,6 +76,7 @@ def dad():
 @app.route('/permission_denied/<n>/<u>/<p>/')
 def permission_admin(n, u, p):
     return render_template('permission.html', n=n, u=u, p=p)
+    return redirect(url_for('home'))
 
 @app.route('/pages/')
 def pages():
