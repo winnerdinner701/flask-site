@@ -1,9 +1,29 @@
 from flask import Flask, redirect, url_for, render_template, request
 app = Flask(__name__)
 a = ['chris', 'idf9ujer9tuswdiw9peowf0h9uf0iwef9h80chrissjieujiugrjfeowihhgwoif9ghfwuhfw8f', "701"]
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def home():
+    if request.method == "POST":
+        i = request.form.get('search')
+        if i == "buber":
+            return redirect(url_for('buber'))
+        if i == "mum":
+            return redirect(url_for("mum"))
+        if i == "dad":
+            return redirect(url_for("dad"))
+        if i == "chris":
+            return redirect(url_for("chris"))
+        if i == "admin":
+            return redirect(url_for("admin1"))
+        else:
+            return redirect(url_for("err", e=400))
     return render_template('index.html')
+
+@app.route('/pages/<e>')
+def err(e):
+    return render_template('error.html', e=e)
+
+
 @app.route('/<n>/')
 def home2(n):
     return render_template('index.html', n=' '+n)
