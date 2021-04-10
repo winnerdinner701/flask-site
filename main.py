@@ -1,6 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, request
 app = Flask(__name__)
-a = ['chris', 'idf9ujer9tuswdiw9peowf0h9uf0iwef9h80chrissjieujiugrjfeowihhgwoif9ghfwuhfw8f']
+a = ['chris', 'idf9ujer9tuswdiw9peowf0h9uf0iwef9h80chrissjieujiugrjfeowihhgwoif9ghfwuhfw8f', "701"]
 @app.route("/")
 def home():
     return render_template('index.html')
@@ -25,15 +25,16 @@ def admin1():
         req = request.form
         print(req)
         name = request.form.get("name")
-        if name in a:
-            return redirect(url_for('admin_link', n=name, u='idf9ujer9tuswdiw9peowf0h9uf0iwef9h80'+name+'sjieujiugrjfeowihhgwoif9ghfwuhfw8f'))
+        pas = request.form.get("pas")
+        if name in a and pas in a:
+            return redirect(url_for('admin_link', n=name, u='idf9ujer9tuswdiw9peowf0h9uf0iwef9h80'+name+'sjieujiugrjfeowihhgwoif9ghfwuhfw8f', p=pas))
         else:
             return redirect(url_for('permission_admin', n='admin', u=name))
     return render_template('admin.html')
 
-@app.route('/admin/<u>/user/<n>')
-def admin_link(u, n):
-    if n in a and u in a:
+@app.route('/admin/<u>/user/<n>/<p>/')
+def admin_link(u, n, p):
+    if n in a and u in a and p in a:
         return render_template('admin_user.html', n=n)
     else:
         return redirect(url_for('permission_admin', n='admin'))
