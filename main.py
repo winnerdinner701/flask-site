@@ -1,10 +1,8 @@
 from flask import Flask, redirect, url_for, render_template, request
 app = Flask(__name__)
 a = ['chris', 'idf9ujer9tuswdiw9peowf0h9uf0iwef9h80chrissjieujiugrjfeowihhgwoif9ghfwuhfw8f', "701"]
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def home():
-    if request.method == "POST":
-        return redirect(url_for(''))
     return render_template('index.html')
 @app.route('/<n>/')
 def home2(n):
