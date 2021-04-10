@@ -28,7 +28,7 @@ def admin1():
         if name in a:
             return redirect(url_for('admin_link', n=name, u='idf9ujer9tuswdiw9peowf0h9uf0iwef9h80'+name+'sjieujiugrjfeowihhgwoif9ghfwuhfw8f'))
         else:
-            return redirect(url_for('permission_admin', n='admin'))
+            return redirect(url_for('permission_admin', n='admin', u=name))
     return render_template('admin.html')
 
 @app.route('/admin/<u>/user/<n>')
@@ -50,9 +50,9 @@ def mum():
 def dad():
     return render_template('dad.html')
 
-@app.route('/permission_denied/<n>/')
-def permission_admin(n):
-    return render_template('permission.html', n=n)
+@app.route('/permission_denied/<n>/<u>/')
+def permission_admin(n, u):
+    return render_template('permission.html', n=n, u=u)
 
 if __name__ == "__main__":
   app.run(debug=True)
